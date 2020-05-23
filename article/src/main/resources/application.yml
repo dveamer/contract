@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: article
+
+server:
+  port: 8082
+
+api:
+  contract:
+    commentClient:
+      name: comment
+      url: http://localhost:8080
+      contextId: comment
