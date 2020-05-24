@@ -1,4 +1,4 @@
 # contract
 
 
-http://dveamer.github.io/backend/FeignClientStub.html
+http://dveamer.github.io/backend/JavaContractInterface.html
