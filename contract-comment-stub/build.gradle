@@ -19,9 +19,16 @@ ext {
 }
 
 dependencies {
-	implementation 'org.springframework:spring-context'
 
-	testImplementation 'org.springframework.boot:spring-boot-starter'
+	// If you want to use swagger, turn on these 3 follow ( spring-boot-stater-web, springfox-swagger-ui, springfox-swagger2 )
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'io.springfox:springfox-swagger-ui:2.9.2'
+	implementation 'io.springfox:springfox-swagger2:2.9.2'
+
+	// If you do not want to use swagger (use only unit-test), turn on these 2 follow ( spring-context, spring-boot-starter )
+	//	implementation 'org.springframework:spring-context'
+	//	testImplementation 'org.springframework.boot:spring-boot-starter'
+
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}

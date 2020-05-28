@@ -27,19 +27,19 @@ class CommentTests {
 
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	private CommentContract commentCtract;
+	private CommentContract commentContract;
 
 	@BeforeAll
 	void setup() {
 		Properties properties = System.getProperties();
 		String profiles = properties.getProperty("testType");
 		if(profiles==null||!profiles.contains("contractTest")) {
-			commentCtract = new CommentContractStub();
+			commentContract = new CommentContractStub();
 			return;
 		}
 
 		String url = properties.getProperty("api.contract.comment.url");
-		commentCtract = Feign.builder()
+		commentContract = Feign.builder()
 				.contract(new SpringMvcContract())
 				.encoder(new JacksonEncoder())
 				.decoder(new JacksonDecoder())
@@ -49,7 +49,7 @@ class CommentTests {
 	@Test
 	void loadCommentsByArticleIdTest() {
 		List<CommentDto> expectedList = new CommentContractStub().loadCommentsByArticleId(ArticleFixture.articleId1());
-		List<CommentDto> actualList = commentCtract.loadCommentsByArticleId(ArticleFixture.articleId1());
+		List<CommentDto> actualList = commentContract.loadCommentsByArticleId(ArticleFixture.articleId1());
 		assertThat(actualList, is(samePropertyValuesAs(expectedList)));
 	}
 
@@ -57,7 +57,7 @@ class CommentTests {
 	void loadArticleIdHavingNumerousCommentsTest() {
 		ConditionDto condition = ConditionFixture.conditionDto();
 		List<ArticleCommentCountDto> expectedList = ArticleCommentCountFixture.articleCommentCountList(condition.getBiggerThan(), condition.getBeforeDays());
-		List<ArticleCommentCountDto> actualList = commentCtract.loadArticleIdHavingNumerousComments(condition);
+		List<ArticleCommentCountDto> actualList = commentContract.loadArticleIdHavingNumerousComments(condition);
 		assertThat(actualList, is(samePropertyValuesAs(expectedList)));
 	}
 
