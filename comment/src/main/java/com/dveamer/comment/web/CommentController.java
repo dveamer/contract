@@ -8,7 +8,6 @@ import com.dveamer.contract.comment.ArticleCommentCountDto;
 import com.dveamer.contract.comment.CommentContract;
 import com.dveamer.contract.comment.CommentDto;
 import com.dveamer.contract.comment.ConditionDto;
-import feign.QueryMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,7 +36,7 @@ public class CommentController implements CommentContract {
 
     @Override
     @GetMapping("/articles")
-    public List<ArticleCommentCountDto> loadArticleIdHavingNumerousComments(@QueryMap ConditionDto conditionDto) {
+    public List<ArticleCommentCountDto> loadArticleIdHavingNumerousComments(ConditionDto conditionDto) {
         ConditionVo conditionVo = convertFromConditionDtoToConditionVo(conditionDto);
         List<Article> articles = commentService.loadArticleIdHavingNumerousComments(conditionVo);
         return articles.stream().map(a->convertFromArticleToArticleCommentCountDto(a)).collect(Collectors.toList());

@@ -1,12 +1,12 @@
 package com.dveamer.comment.web;
 
 import com.dveamer.comment.JsonConverterUtil;
-import com.dveamer.comment.component.CommentService;
 import com.dveamer.contract.comment.ArticleCommentCountDto;
 import com.dveamer.contract.comment.CommentDto;
 import com.dveamer.contract.comment.ConditionDto;
 import com.dveamer.contract.comment.stub.ArticleFixture;
 import com.dveamer.contract.comment.stub.CommentContractStub;
+import com.dveamer.contract.comment.stub.ConditionFixture;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -48,10 +48,7 @@ class CommentControllerTests {
 
 	@Test
 	public void loadArticleIdHavingNumerousComments_success() throws Exception {
-		ConditionDto condition = new ConditionDto();
-		condition.setBeforeDays(2);
-		condition.setBiggerThan(3);
-
+		ConditionDto condition = ConditionFixture.conditionDto();
 		List<ArticleCommentCountDto> expectedArticleCommentCountDtoList = new CommentContractStub().loadArticleIdHavingNumerousComments(condition);
 		mockMvc.perform(get("/articles")
 							.queryParam("beforeDays", Integer.toString(condition.getBeforeDays()))
