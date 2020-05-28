@@ -17,7 +17,7 @@ public class CommentContractStub implements CommentContract {
     @Override
     @GetMapping(path="/articles/{articleId}/comments")
     public List<CommentDto> loadCommentsByArticleId(String articleId) {
-            if(articleId.equals(ArticleFixture.articleId1())) {
+        if(articleId.equals(ArticleFixture.articleId1())) {
             return CommentFixture.commentList1();
         }
 
