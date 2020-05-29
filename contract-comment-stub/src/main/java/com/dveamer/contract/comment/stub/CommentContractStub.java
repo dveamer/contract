@@ -6,17 +6,17 @@ import com.dveamer.contract.comment.CommentDto;
 import com.dveamer.contract.comment.ConditionDto;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Component
 @RestController
 public class CommentContractStub implements CommentContract {
 
     @Override
     @GetMapping(path="/articles/{articleId}/comments")
-    public List<CommentDto> loadCommentsByArticleId(String articleId) {
+    public List<CommentDto> loadCommentsByArticleId(@PathVariable("articleId") String articleId) {
         if(articleId.equals(ArticleFixture.articleId1())) {
             return CommentFixture.commentList1();
         }
