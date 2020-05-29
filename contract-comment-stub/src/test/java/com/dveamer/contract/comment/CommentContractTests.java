@@ -23,7 +23,7 @@ import static org.hamcrest.core.Is.is;
 
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class CommentTests {
+class CommentContractTests {
 
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -31,13 +31,8 @@ class CommentTests {
 
 	@BeforeAll
 	void setup() {
+//		commentContract = new CommentContractStub();
 		Properties properties = System.getProperties();
-		String profiles = properties.getProperty("testType");
-		if(profiles==null||!profiles.contains("contractTest")) {
-			commentContract = new CommentContractStub();
-			return;
-		}
-
 		String url = properties.getProperty("api.contract.comment.url");
 		commentContract = Feign.builder()
 				.contract(new SpringMvcContract())

@@ -39,11 +39,6 @@ dependencies {
 }
 
 test {
-	useJUnitPlatform()
-}
-
-task contractTest(type: Test, group: 'verification') {
-	systemProperty "testType", "contractTest"
 	systemProperty "api.contract.comment.url", "http://localhost:8080"
 	useJUnitPlatform()
 }
@@ -60,5 +55,6 @@ jar {
 }
 
 bootJar {
-	enabled = false
+	enabled = true
+	archiveBaseName='contract-comment-stub-server'
 }
