@@ -6,14 +6,14 @@ plugins {
 
 group = 'com.dveamer'
 version = '0.0.1'
-sourceCompatibility = '11'
+sourceCompatibility = '8'
 
 repositories {
 	mavenCentral()
 }
 
 ext {
-	set('springCloudVersion', "Hoxton.SR4")
+	set('springCloudVersion', "Hoxton.RELEASE")
 }
 
 dependencies {

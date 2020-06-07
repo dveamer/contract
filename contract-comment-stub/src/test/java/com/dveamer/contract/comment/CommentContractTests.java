@@ -31,9 +31,14 @@ class CommentContractTests {
 
 	@BeforeAll
 	void setup() {
-//		commentContract = new CommentContractStub();
 		Properties properties = System.getProperties();
 		String url = properties.getProperty("api.contract.comment.url");
+
+		if(url==null) {
+			commentContract = new CommentContractStub();
+			return;
+		}
+
 		commentContract = Feign.builder()
 				.contract(new SpringMvcContract())
 				.encoder(new JacksonEncoder())
