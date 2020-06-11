@@ -2,6 +2,7 @@ package com.dveamer.comment.web;
 
 import com.dveamer.comment.JsonConverterUtil;
 import com.dveamer.contract.comment.ArticleCommentCountDto;
+import com.dveamer.contract.comment.CommentContract;
 import com.dveamer.contract.comment.CommentDto;
 import com.dveamer.contract.comment.ConditionDto;
 import com.dveamer.contract.comment.stub.ArticleFixture;
@@ -38,7 +39,7 @@ class CommentControllerTests {
 	@Test
 	public void loadCommentsByArticleId_success() throws Exception {
 		List<CommentDto> expectedCommentDtoList = new CommentContractStub().loadCommentsByArticleId(ArticleFixture.articleId1());
-		mockMvc.perform(get("/articles/{articleId}/comments", ArticleFixture.articleId1()))
+		mockMvc.perform(get(CommentContract.PATH_loadCommentsByArticleId, ArticleFixture.articleId1()))
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON))
 				.andExpect(content().string(JsonConverterUtil.toJson(expectedCommentDtoList)));
@@ -50,7 +51,7 @@ class CommentControllerTests {
 	public void loadArticleIdHavingNumerousComments_success() throws Exception {
 		ConditionDto condition = ConditionFixture.conditionDto();
 		List<ArticleCommentCountDto> expectedArticleCommentCountDtoList = new CommentContractStub().loadArticleIdHavingNumerousComments(condition);
-		mockMvc.perform(get("/articles")
+		mockMvc.perform(get(CommentContract.PATH_loadArticleIdHavingNumerousComments)
 							.queryParam("beforeDays", Integer.toString(condition.getBeforeDays()))
 							.queryParam("biggerThan", Integer.toString(condition.getBiggerThan())))
 				.andExpect(status().isOk())

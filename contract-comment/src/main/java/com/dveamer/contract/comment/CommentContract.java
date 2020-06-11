@@ -12,10 +12,14 @@ import java.util.List;
         , contextId = "${api.contract.commentClient.contextId}")
 public interface CommentContract {
 
-    @GetMapping(path="/articles/{articleId}/comments")
-    List<CommentDto> loadCommentsByArticleId(@PathVariable("articleId") String articleId);
+    String PV_articleId = "articleId";
 
-    @GetMapping(path="/articles")
+    String PATH_loadCommentsByArticleId = "/articles/{articleId}/comments";
+    @GetMapping(path= PATH_loadCommentsByArticleId)
+    List<CommentDto> loadCommentsByArticleId(@PathVariable(PV_articleId) String articleId);
+
+    String PATH_loadArticleIdHavingNumerousComments = "/articles";
+    @GetMapping(path= PATH_loadArticleIdHavingNumerousComments)
     List<ArticleCommentCountDto> loadArticleIdHavingNumerousComments(@SpringQueryMap ConditionDto conditionDto);
 
 }

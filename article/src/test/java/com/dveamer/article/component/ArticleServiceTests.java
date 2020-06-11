@@ -23,7 +23,7 @@ class ArticleServiceTests {
 	}
 
 	@Test
-	public void loadCountOfComments_success() throws Exception {
+	public void loadCountOfComments_success() {
 		int expectedValue = new CommentContractStub().loadCommentsByArticleId(ArticleFixture.articleId1()).size();
 		int actualValue = articleService.loadCountOfComments(ArticleFixture.articleId1());
 		assertThat(actualValue, equalTo(expectedValue));
@@ -32,7 +32,7 @@ class ArticleServiceTests {
 	}
 
 	@Test
-	public void loadArticleIdHavingNumerousComments_success() throws Exception {
+	public void loadArticleIdHavingNumerousComments_success() {
 		int expectedValue = new CommentContractStub().loadArticleIdHavingNumerousComments(ConditionFixture.conditionDto()).size();
 		int actualValue = articleService.loadCountOfFamousArticle();
 		assertThat(actualValue, equalTo(expectedValue));

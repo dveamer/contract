@@ -39,6 +39,10 @@ dependencies {
 }
 
 test {
+	useJUnitPlatform()
+}
+
+task contractTest(type: Test) {
 	systemProperty "api.contract.comment.url", "http://localhost:8080"
 	useJUnitPlatform()
 }

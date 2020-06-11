@@ -23,7 +23,6 @@ dependencies {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
 
-	//implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
 	implementation 'com.dveamer:contract-comment:0.0.1'
 	testImplementation 'com.dveamer:contract-comment-stub:0.0.1'
 }

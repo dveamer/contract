@@ -28,14 +28,14 @@ public class CommentController implements CommentContract {
     }
 
     @Override
-    @GetMapping("/articles/{articleId}/comments")
-    public List<CommentDto> loadCommentsByArticleId(@PathVariable("articleId") String articleId) {
+    @GetMapping(PATH_loadCommentsByArticleId)
+    public List<CommentDto> loadCommentsByArticleId(@PathVariable(PV_articleId) String articleId) {
         List<Comment> comments = commentService.loadCommentsByArticleId(articleId);
         return comments.stream().map(c->convertFromCommentToCommentDto(c)).collect(Collectors.toList());
     }
 
     @Override
-    @GetMapping("/articles")
+    @GetMapping(PATH_loadArticleIdHavingNumerousComments)
     public List<ArticleCommentCountDto> loadArticleIdHavingNumerousComments(ConditionDto conditionDto) {
         ConditionVo conditionVo = convertFromConditionDtoToConditionVo(conditionDto);
         List<Article> articles = commentService.loadArticleIdHavingNumerousComments(conditionVo);

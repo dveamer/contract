@@ -11,8 +11,6 @@ import java.util.stream.Collectors;
 @Service
 class CommentServiceImpl implements CommentService {
 
-    CommentServiceImpl() {}
-
     @Override
     public List<Comment> loadCommentsByArticleId(String articleId) {
         return loadCommentsByArticle0(articleId);

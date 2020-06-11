@@ -15,8 +15,8 @@ import java.util.List;
 public class CommentContractStub implements CommentContract {
 
     @Override
-    @GetMapping(path="/articles/{articleId}/comments")
-    public List<CommentDto> loadCommentsByArticleId(@PathVariable("articleId") String articleId) {
+    @GetMapping(path=PATH_loadCommentsByArticleId)
+    public List<CommentDto> loadCommentsByArticleId(@PathVariable(PV_articleId) String articleId) {
         if(articleId.equals(ArticleFixture.articleId1())) {
             return CommentFixture.commentList1();
         }
@@ -25,7 +25,7 @@ public class CommentContractStub implements CommentContract {
     }
 
     @Override
-    @GetMapping(path="/articles")
+    @GetMapping(path=PATH_loadArticleIdHavingNumerousComments)
     public List<ArticleCommentCountDto> loadArticleIdHavingNumerousComments(ConditionDto conditionDto) {
         return ArticleCommentCountFixture.articleCommentCountList(conditionDto.getBiggerThan(), conditionDto.getBeforeDays());
     }
