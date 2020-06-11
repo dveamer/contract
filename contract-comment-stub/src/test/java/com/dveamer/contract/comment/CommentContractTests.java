@@ -1,6 +1,5 @@
 package com.dveamer.contract.comment;
 
-import com.dveamer.contract.comment.stub.ArticleCommentCountFixture;
 import com.dveamer.contract.comment.stub.ArticleFixture;
 import com.dveamer.contract.comment.stub.CommentContractStub;
 import com.dveamer.contract.comment.stub.ConditionFixture;
@@ -56,7 +55,7 @@ class CommentContractTests {
 	@Test
 	void loadArticleIdHavingNumerousCommentsTest() {
 		ConditionDto condition = ConditionFixture.conditionDto();
-		List<ArticleCommentCountDto> expectedList = ArticleCommentCountFixture.articleCommentCountList(condition.getBiggerThan(), condition.getBeforeDays());
+		List<ArticleCommentCountDto> expectedList = new CommentContractStub().loadArticleIdHavingNumerousComments(condition);
 		List<ArticleCommentCountDto> actualList = commentContract.loadArticleIdHavingNumerousComments(condition);
 		assertThat(actualList, is(samePropertyValuesAs(expectedList)));
 	}
